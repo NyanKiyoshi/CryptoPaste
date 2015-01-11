@@ -8,19 +8,19 @@ Python (at least 2.6 or 3.3).
 
 Getting Started (for POSIX user)
 ================================
-1. Clone the project and change dir into.
+1\. Clone the project and change dir into.
 ```bash
 git clone https://github.com/NyanKiyoshi/cryptopaste.git && cd cryptopaste
 ```
-2. Create the Python virtual environment.
+2\. Create the Python virtual environment.
 ```bash
 virtualenv-2.7 --python /usr/bin/python2 --no-site-packages env
 ```
-3. Install the requirements and the project.
+3\. Install the requirements and the project.
 ```bash
 ./env/bin/python setup.py develop
 ```
-4. Initialize the database.
+4\. Initialize the database.
 ```bash
 ./env/bin/init_db development.ini
 ```

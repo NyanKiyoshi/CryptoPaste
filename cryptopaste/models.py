@@ -73,7 +73,7 @@ class Paste(Base):
         n = DBSession.query(Paste).filter_by(year_month=self.year_month).count()
         # 74 possibilities * len for the identifier
         # 5250 possibilities for the decryption key
-        n = (n / 74) + 1
+        n = int((n / 74) + 1)
         self.identifier = identifier if identifier else new_key(
             begin=d[0], end=d[1], length=n+2, min_length=n, chars='a-zA-Z0-9_-.'
         )
@@ -101,7 +101,7 @@ class UserPaste(Base):
     expire_date = Column(DateTime, nullable=True, default=None)
     year_month = Column(String(4), nullable=False)
     instant_burn = Column(Boolean, nullable=False, default=False)
-    deletion_token = Column(String(700), nullable=False, default=new_key(min_length=250, max_length=600))
+    deletion_token = Column(String(700), nullable=False, default=new_key(min_length=250, max_length=400))
 
     def __init__(self, paste, identifier=None, burn=False, expiration_delta=None, encryption=True, encryption_key=None):
         """
@@ -144,7 +144,7 @@ class UserPaste(Base):
         n = DBSession.query(UserPaste).filter_by(year_month=self.year_month).count()
         # 74 possibilities * len for the identifier
         # 5250 possibilities for the decryption key
-        n = (n / 74) + 1
+        n = int((n / 74) + 1)
         self.identifier = identifier if identifier else new_key(
             begin=d[0], end=d[1], length=n+2, min_length=n, chars='a-zA-Z0-9_-.'
         )

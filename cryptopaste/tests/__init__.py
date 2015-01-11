@@ -54,7 +54,7 @@ class DummyRequest(testing.DummyRequest):
     def __init__(self, *args, **kwargs):
         super(DummyRequest, self).__init__(*args, **kwargs)
         self.referrer = None
-        self.remote_addr = kwargs.get('remote_addr')
+        self.client_addr = kwargs.get('client_addr')
 
 
 from cryptopaste.tests.models import *

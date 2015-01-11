@@ -66,22 +66,3 @@ class TestUserModelWithDB(BaseTest):
                 AESCipher(action['encryption_key']).decrypt(p.paste) if action['encryption']
                 else p.paste, action['paste']
             )
-        i = 0
-        while 1:
-            i += 1
-            u = UserPaste(
-                paste='Test.',
-                burn=True,
-                encryption=True,
-            )
-            self.identifier = u.identifier
-            self.encryption_key = u.encryption_key
-            u.user = 'New'
-
-            DBSession.add(u)
-            self.session.flush()
-            p = self.session.query(UserPaste).filter_by(identifier=self.identifier).first()
-            print '%s::Works fine.' % i
-            self.assertEqual(p.instant_burn, True)
-            self.assertEqual(p.encrypted, True)
-            self.assertEqual(AESCipher(self.encryption_key).decrypt(p.paste), "Test.")

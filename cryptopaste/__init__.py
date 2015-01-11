@@ -34,7 +34,7 @@ def add_routes(config):
         r'{id:[a-zA-Z0-9_\-.]{1,128}}'
         r'{key:(!(?P<DECRYPTION_KEY>[a-zA-Z0-9\-._]{1,600}))?}'
         r'{to_remove:(/remove/(?P<REMOVAL_KEY>[a-zA-Z0-9\-._]{100,400}))?}'
-        r'{as_raw:(//raw)?}'
+        r'{as_raw:(\|raw)?}'
     )
 
 

@@ -18,7 +18,7 @@ class TestPublicViews(BaseTest):
         self.assertIsInstance(response, dict)
 
     def test_invalid_link(self):
-        request = DummyRequest(remote_addr='127.0.0.1')
+        request = DummyRequest(client_addr='127.0.0.1')
         request.matchdict['user'] = '_'
         response = views.view_paste(request)
         self.assertIn('message', response)
@@ -30,7 +30,7 @@ class TestPublicViews(BaseTest):
                 'content': 'One day, I would have wings.',
                 'key': 'wings',
             },
-            remote_addr='127.0.0.1',
+            client_addr='127.0.0.1',
         )
         response = views.home(request)
         self.assertIsInstance(response, HTTPSeeOther)
@@ -47,14 +47,14 @@ class TestPublicViews(BaseTest):
         self.assertGreater(end, -1)
         deletion_key = r[start + 10:end].strip().split('/')[-1]
 
-        request = DummyRequest(remote_addr='127.0.0.1')
+        request = DummyRequest(client_addr='127.0.0.1')
         request.matchdict['USER'] = 'test'
         request.matchdict['id'] = _id
         request.matchdict['DECRYPTION_KEY'] = 'wings'
         request.matchdict['as_raw'] = True
 
         response = views.view_paste(request)
-        self.assertEqual(response.body, 'One day, I would have wings.')
+        self.assertEqual(response.body.decode('utf-8'), 'One day, I would have wings.')
 
         request.matchdict['as_raw'] = False
         response = views.view_paste(request)
@@ -68,4 +68,4 @@ class TestPublicViews(BaseTest):
 
         request.matchdict['as_raw'] = True
         response = views.view_paste(request)
-        self.assertEqual(response.body, 'The paste has been deleted.')
+        self.assertEqual(response.body.decode('utf-8'), 'The paste has been deleted.')

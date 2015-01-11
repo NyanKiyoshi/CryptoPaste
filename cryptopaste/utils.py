@@ -20,12 +20,12 @@ def new_key(
 ):
     if ((min_length or max_length) and length) or (min_length and max_length):
         length = randrange(min_length, max_length or length)
-    return begin + ''.join([choice(chars) for i in range(length)]).encode('utf-8') + end
+    return begin + ''.join([choice(chars) for i in range(length)]) + end
 
 
 class AESCipher:
     def __init__(self, key):
-        self.bs = 256
+        self.bs = 128
         self.key = hashlib.sha256(key.encode()).digest()
 
     def encrypt(self, raw):
@@ -39,7 +39,7 @@ class AESCipher:
         ).decode('utf-8')
 
     def _pad(self, s):
-        return s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
+        return s.decode('utf-8') + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
 
     @staticmethod
     def _un_pad(s):

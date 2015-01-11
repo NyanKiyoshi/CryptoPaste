@@ -27,13 +27,13 @@ def home(request):
         if ('content' not in request.POST) or request.POST['content'].__sizeof__() > 2000000:
             raise HTTPBadRequest
 
-        regulator = DBSession.query(SubmissionRegulator).filter_by(address=request.remote_addr).first()
+        regulator = DBSession.query(SubmissionRegulator).filter_by(address=request.client_addr).first()
         if regulator:
             if not regulator.next_time <= datetime.utcnow():
                 flash_response(request, 'Please wait 30 seconds between each paste.')
                 return request.POST
         else:
-            regulator = SubmissionRegulator(address=request.remote_addr)
+            regulator = SubmissionRegulator(address=request.client_addr)
             with manager:
                 DBSession.add(regulator)
 
@@ -170,15 +170,15 @@ def home(request):
 @view_config(route_name='view_paste', renderer='view.mako')
 def view_paste(request):
     # If the any information given is wrong, we increase the time anyway. To don't show which information is wrong.
-    failed = DBSession.query(DecryptionAttempt).filter_by(address=request.remote_addr).first()
+    failed = DBSession.query(DecryptionAttempt).filter_by(address=request.client_addr).first()
     if not failed:
-        failed = DecryptionAttempt(address=request.remote_addr)
+        failed = DecryptionAttempt(address=request.client_addr)
     elif failed.time >= 0:
         t = (datetime.utcnow() - failed.last_failure).seconds
         if t < failed.time * 40:  # = 5 attempt each 20s
             if failed.time > 10:
                 raise HTTPForbidden(
-                    'Slowdown!'
+                    'Slowdown! '
                     'If the key of the paste is wrong: do not force on it! Please wait about 3 minutes.'
                 )
             sleep(failed.time if failed.time > -1 else 0)

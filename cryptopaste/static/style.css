@@ -8,7 +8,7 @@ body { max-width: 1070px; margin: 0 auto; padding: 25px; font-family: Arial,Helv
 .notify.error { border: #d6191f 2px solid}
 #fields label, span .b { display: block; width: 99% }
 #fields label { margin: 0 0 25px 0; }
-textarea, input { width: 100%; border: 1px solid #7d7d7d; padding: 5px}
+textarea, input { width: 100%; border: 1px solid #7d7d7d; background: #FCFCFC; padding: 5px; color: #131313;}
 textarea { max-width: 100%; min-width: 50%; min-height: 100px }
 .w { width: 10px}
 .key { opacity: .8 }
