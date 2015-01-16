@@ -1,12 +1,12 @@
 <%inherit file="base.mako"/>
 <%block name="title">View paste</%block>
 <div id="tools">
-    <a href="${request.path}|raw" class="button right" type="submit">Raw</a>
+    <a href="${request.path}%3Araw" class="button right" type="submit">Raw</a>
 </div>
 <div class="noCSS">
     <b>
         Warning: your CSS seem doesn't work correctly, please try to fix it. If the content of the "paste" doesn't show
-        correctly, please add "|raw" at the end of the URL.
+        correctly, please add ":raw" at the end of the URL.
     </b>
 </div>
 % if paste is not UNDEFINED:

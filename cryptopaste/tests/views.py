@@ -61,11 +61,10 @@ class TestPublicViews(BaseTest):
         self.assertIn('paste', response)
         self.assertEqual(response['paste'], 'One day, I would have wings.')
 
-        request.matchdict['DECRYPTION_KEY'] = None
+        request.matchdict['as_raw'] = True
         request.matchdict['REMOVAL_KEY'] = deletion_key
         response = views.view_paste(request)
-        self.assertEqual(response['message'], 'The paste has been deleted.')
-
-        request.matchdict['as_raw'] = True
-        response = views.view_paste(request)
         self.assertEqual(response.body.decode('utf-8'), 'The paste has been deleted.')
+
+        request.matchdict['REMOVAL_KEY'] = None
+        self.assertEqual(views.view_paste(request).status_code, 403)

@@ -44,7 +44,7 @@ def home(request):
             {
                 'key': 'user',
                 'length': [1, 80],
-                'match': [r'^([a-zA-Z0-9]+)$', 'alphanumerics characters'],
+                'match': [r'^([a-zA-Z0-9_\-.~]+)$', 'alphanumerics characters and the following characters _-.~'],
             },
             {
                 'key': 'burn',
@@ -220,7 +220,9 @@ def view_paste(request):
     if remove:
         if paste.deletion_token == remove:
             DBSession.delete(paste)
-            return error('The paste has been deleted.')
+            return Response(
+                'The paste has been deleted.', content_type='text/plain', status_int=403
+            ) if raw else dict(message='The paste has been deleted.')
         return error('The paste can not be delete. Please check the deletion key.')
 
     # we check if the paste must be burned after reading. If yes, we remove it before displaying.

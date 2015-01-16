@@ -7,7 +7,7 @@
 # This file is part of CryptoPaste under the MIT license. Please take awareness about this latest before doing anything!
 
 from cryptopaste.tests import *
-from cryptopaste.models import Paste, UserPaste
+from cryptopaste.models import Paste
 from cryptopaste.utils import AESCipher
 
 

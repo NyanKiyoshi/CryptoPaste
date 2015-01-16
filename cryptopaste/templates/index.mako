@@ -12,17 +12,17 @@
             <label for="expiration">
                 <span>Expiration</span>
                 <select id="expiration" name="expiration">
-                    <option value="0.001">1 minute</option>
-                    <option value="0.003">5 minutes</option>
-                    <option value="0.007">10 minutes</option>
-                    <option value="0.010">15 minutes</option>
-                    <option value="0.021">30 minutes</option>
-                    <option value="0.042">1 hour</option>
-                    <option value="0.5">12 hours</option>
+                    <option value="0.00069445">1 minute</option>
+                    <option value="0.00347225">5 minutes</option>
+                    <option value="0.0069445">10 minutes</option>
+                    <option value="0.01041675">15 minutes</option>
+                    <option value="0.0208335">30 minutes</option>
+                    <option value="0.041667">1 hour</option>
+                    <option value="0.500004">12 hours</option>
                     <option value="1">24 hours</option>
                     <option value="7">1 week</option>
                     <option value="30.417">1 month</option>
-                    <option value="3650">1 year</option>
+                    <option value="365">1 year</option>
                     <option value="36500" selected>100 years</option>
                     <option value="365000">1 000 years</option> <!-- One day -->
                 </select>
@@ -41,7 +41,7 @@
         <label for="user">
             <span class="b">Nickname for the paste (optional)</span>
             <input
-                    type="text" id="user" name="user" placeholder="Optional and must only contain alphanumerics characters." pattern="^[a-zA-Z0-9]{1,80}$"
+                    type="text" id="user" name="user" placeholder="Optional and must only contain alphanumerics characters and the following characters _-~." pattern="^[a-zA-Z0-9_\-.~]{1,80}$"
                     % if 'user' in request.POST:
                         value="${user}"
                     % endif

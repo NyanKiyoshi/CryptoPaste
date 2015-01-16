@@ -61,7 +61,7 @@ class Paste(Base):
 
         if encryption:
             if not encryption_key:
-                self.encryption_key = new_key(min_length=90, max_length=600)
+                self.encryption_key = new_key(min_length=65, max_length=250)
             else:
                 self.encryption_key = encryption_key
             self.paste = AESCipher(self.encryption_key).encrypt(paste.encode('utf-8'))
@@ -101,7 +101,7 @@ class UserPaste(Base):
     expire_date = Column(DateTime, nullable=True, default=None)
     year_month = Column(String(4), nullable=False)
     instant_burn = Column(Boolean, nullable=False, default=False)
-    deletion_token = Column(String(700), nullable=False, default=new_key(min_length=250, max_length=400))
+    deletion_token = Column(String(700), nullable=False, default=new_key(min_length=100, max_length=400))
 
     def __init__(self, paste, identifier=None, burn=False, expiration_delta=None, encryption=True, encryption_key=None):
         """
@@ -132,7 +132,7 @@ class UserPaste(Base):
 
         if encryption:
             if not encryption_key:
-                self.encryption_key = new_key(min_length=90, max_length=600)
+                self.encryption_key = new_key(min_length=65, max_length=250)
             else:
                 self.encryption_key = encryption_key
             self.paste = AESCipher(self.encryption_key).encrypt(paste.encode('utf-8'))
