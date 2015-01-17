@@ -25,7 +25,7 @@ def new_key(
 
 class AESCipher:
     def __init__(self, key):
-        self.bs = 128
+        self.bs = 256
         self.key = hashlib.sha256(key.encode()).digest()
 
     def encrypt(self, raw):
@@ -39,7 +39,7 @@ class AESCipher:
         ).decode('utf-8')
 
     def _pad(self, s):
-        return s.decode('utf-8') + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
+        return s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
 
     @staticmethod
     def _un_pad(s):

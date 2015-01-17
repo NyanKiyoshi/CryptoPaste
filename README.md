@@ -9,11 +9,11 @@ Index
 3. [Run the server](#run-the-server)
 4. [Full documentation](#full-documentation)
 5. [Troubleshooting](#troubleshooting)
-6. [Troubleshooting](#how-to-contribute)
+6. [How to contribute?](#how-to-contribute)
 
 Requirements
 ============
-Python (at least 2.6 or 3.3). Python2.x is recommended for this project.
+Python 2 (at least 2.6).
 
 Getting Started (for POSIX user)
 ================================
@@ -49,7 +49,7 @@ Troubleshooting
 You have a problem? Or an issue?
 
 You can try to find an answer to you problem [here](http://nyankiyoshi.github.io/docs/CryptoPaste/0.1/troubleshooting.html).
-If you can't find the good answer for your problem, feel free to post [here](https://github.com/NyanKiyoshi/CryptoPaste/issues).
+If you can't find the good answer to your problem, feel free to post [here](https://github.com/NyanKiyoshi/CryptoPaste/issues).
 
 How to contribute?
 ==================

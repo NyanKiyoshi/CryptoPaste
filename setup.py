@@ -47,7 +47,7 @@ requires = [
 
 setup(
     name='CryptoPaste',
-    version='0.0',
+    version='0.1.3',
     description='CryptoPaste',
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
